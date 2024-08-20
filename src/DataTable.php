@@ -8,11 +8,10 @@ class DataTable {
 
     protected Builder $query;
 
-    public function __construct($model, $perPage) {
+    public function __construct($model) {
         // Assume que o $model seja uma instância de um modelo Eloquent ou um query builder.
         if ($model instanceof Builder) {
             $this->query = $model;
-            $this->query = $this->query->paginate($perPage);
         } else {
             $this->query = $model::query();
         }
@@ -33,7 +32,7 @@ class DataTable {
         return $this;
     }
 
-    public function paginate(int $perPage = 15) {
+    public function getData(int $perPage = 15) {
         return $this->query->paginate($perPage);
     }
 
